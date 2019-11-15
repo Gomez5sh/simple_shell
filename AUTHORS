@@ -1,4 +1,2 @@
 # This file lists all individuals having contributed content to the repository.
-
-Cristian Urtado (cristian04.97@hotmail.com
-Emmanuel Gomez (eagomez2387@gmai.com)
+#git log --format='%aN <%aE>' | LC_ALL=C.UTF-8 sort -uf
