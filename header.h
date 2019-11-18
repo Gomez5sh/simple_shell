@@ -1,5 +1,6 @@
 #ifndef SHELL_H
 #define SHELL_H
+#define PROMPT "#ShellFun$ "
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +13,5 @@
 
 int main();
 void lsh_loop(void);
-
 
 #endif
