@@ -1,2 +1,4 @@
 # This file lists all individuals having contributed content to the repository.
-#git log --format='%aN <%aE>' | LC_ALL=C.UTF-8 sort -uf
+
+cristian0497 <cristian04.97@hotmail.com>
+g5sh <eagomez2387@gmail.com>
