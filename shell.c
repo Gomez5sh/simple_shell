@@ -22,8 +22,7 @@ int main()
 			return(0);
 		}
 		system(bufo);
-		/*printf("Num chars: %d\n",chara);
-		  printf("You typed: %s",bufo); */
+		
 	} while (chara);
 
 
