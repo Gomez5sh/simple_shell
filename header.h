@@ -10,8 +10,6 @@
 #include <sys/types.h>
 #include <errno.h>
 
-
-int main();
-void lsh_loop(void);
+extern char **environ;
 
 #endif
