@@ -1,31 +1,43 @@
-#include "header.h"
+//#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <errno.h>
+#define PROMPT "#Cisfun/-> "
 
 int main()
 {
-	char *bufo;
-	size_t buffosize = 1024;
-	int chara;
 
-	bufo = malloc(buffosize * (sizeof(char)));
+	char *arg[] = {"/bin/ls", "/home/cristian/Documents/simple_shell", NULL};
+	char *bufo =  NULL;
+	size_t buffosize;
+	int chara, child;
+	char *tmp;
 
-	if (!bufo)
-	{
-		perror("Unable to allocate buffer");
-		exit(1);
-	}
+
+	/* if (!bufo) */
+	/* { */
+	/* 	perror("Unable to allocate buffer"); */
+	/* 	exit(1); */
+	/* } */
+
 	do{
+
 		write(STDOUT_FILENO, PROMPT, 11);
-		chara = getline(&bufo,&buffosize, stdin);
-		if (bufo == "exit")
+		getline(&bufo, &buffosize, stdin);
+		tmp = strtok(bufo, "\n");
+		child = fork();
+		if (child == 0)
 		{
-			free(bufo);
-			return(0);
+			execve(tmp, arg, NULL);
 		}
-		system(bufo);
-		/*printf("Num chars: %d\n",chara);
-		  printf("You typed: %s",bufo); */
-	} while (chara);
+		else
+			wait(&chara);
 
-
+		free(bufo);
+	} while (1);
 	return(0);
 }

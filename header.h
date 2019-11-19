@@ -1,6 +1,6 @@
 #ifndef SHELL_H
 #define SHELL_H
-#define PROMPT "#ShellFun$ "
+#define PROMPT "#Cisfun/-> "
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <errno.h>
+
 
 extern char **environ;
 
