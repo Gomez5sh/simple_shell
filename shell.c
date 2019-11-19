@@ -6,38 +6,41 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <errno.h>
-#define PROMPT "#Cisfun/-> "
+#define PROMPT "#Cisfun> "
+#define ERROR_MS "shell: No such file or directory\n"
 
 int main()
 {
 
-	char *arg[] = {"/bin/ls", "/home/cristian/Documents/simple_shell", NULL};
+	char *arg[] = {"/bin/", NULL};
 	char *bufo =  NULL;
 	size_t buffosize;
-	int chara, child;
+	int child, x;
 	char *tmp;
-
-
-	/* if (!bufo) */
-	/* { */
-	/* 	perror("Unable to allocate buffer"); */
-	/* 	exit(1); */
-	/* } */
 
 	do{
 
-		write(STDOUT_FILENO, PROMPT, 11);
-		getline(&bufo, &buffosize, stdin);
+		write(STDOUT_FILENO, PROMPT, 9);
+		x = getline(&bufo, &buffosize, stdin);
+		if (x == EOF)
+		{
+			write(STDOUT_FILENO, "^D\n", 3);
+			free(bufo);
+			exit(EXIT_FAILURE);
+		}
 		tmp = strtok(bufo, "\n");
 		child = fork();
 		if (child == 0)
 		{
-			execve(tmp, arg, NULL);
+			if (execve(tmp, arg, NULL) == -1)
+			{
+				write(STDOUT_FILENO, ERROR_MS, 33);
+			}
 		}
 		else
-			wait(&chara);
-
-		free(bufo);
+		{
+			wait(NULL);
+		}
 	} while (1);
 	return(0);
 }
