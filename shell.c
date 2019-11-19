@@ -31,13 +31,13 @@ int main()
 		tmp = strtok(bufo, "\n");
 		child = fork();
 		if (child == 0)
+		{
 			execve(tmp, arg, NULL);
+		}
 		else
 			wait(&chara);
 
-
+		free(bufo);
 	} while (1);
-
-
 	return(0);
 }
