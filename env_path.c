@@ -20,7 +20,7 @@ char *_getenv(const char *name)
 
 		if (_strcmp((char *) name, temp) == 0)
 		{
-			change = strtok(temp, "= ");
+			change = strtok(temp, "=");
 			change = strtok(NULL, "\0");
 			break;
 		}
