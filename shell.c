@@ -1,4 +1,3 @@
-//#include "header.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -9,7 +8,12 @@
 #define PROMPT "#Cisfun> "
 #define ERROR_MS "shell: No such file or directory\n"
 
-int main()
+/**
+ * main - funtion main of thw shell
+ *
+ * Return: exit (0)
+ */
+int main(void)
 {
 
 	char *arg[] = {"/bin/", NULL};
@@ -18,8 +22,7 @@ int main()
 	int child, x;
 	char *tmp;
 
-	do{
-
+	do {
 		write(STDOUT_FILENO, PROMPT, 9);
 		x = getline(&bufo, &buffosize, stdin);
 		if (x == EOF)
@@ -35,6 +38,8 @@ int main()
 			if (execve(tmp, arg, NULL) == -1)
 			{
 				write(STDOUT_FILENO, ERROR_MS, 33);
+				free(bufo);
+				exit(EXIT_FAILURE);
 			}
 		}
 		else
@@ -42,5 +47,5 @@ int main()
 			wait(NULL);
 		}
 	} while (1);
-	return(0);
+	return (0);
 }
