@@ -15,12 +15,11 @@
  */
 int main(void)
 {
-
-	char *arg[] = {"/bin/", NULL};
-	char *bufo =  NULL;
+	char *arg[] = {"/bin/sh", NULL, NULL};
+	char *env[] = {"PATH=/bin:/usr/bin:/bin/bash", NULL};
+	char *bufo =  NULL, *tmp;
 	size_t buffosize;
 	int child, x;
-	char *tmp;
 
 	do {
 		write(STDOUT_FILENO, PROMPT, 9);
@@ -31,11 +30,12 @@ int main(void)
 			free(bufo);
 			exit(EXIT_FAILURE);
 		}
-		tmp = strtok(bufo, "\n");
+		tmp = strtok(bufo, " \n");
+		arg[1] = strtok(NULL, "\n");
 		child = fork();
 		if (child == 0)
 		{
-			if (execve(tmp, arg, NULL) == -1)
+			if (execve(tmp, arg, env) == -1)
 			{
 				write(STDOUT_FILENO, ERROR_MS, 33);
 				free(bufo);
@@ -43,9 +43,7 @@ int main(void)
 			}
 		}
 		else
-		{
 			wait(NULL);
-		}
 	} while (1);
 	return (0);
 }
