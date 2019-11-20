@@ -7,19 +7,25 @@
  * Return: 0.
  */
 
-extern char **environ;
 
 char *_getenv(const char *name)
 {
-	char **path;
-	char n = 10;
+	char * temp;
+	char * change;
+	int n;
 
-	for(path=environ; *path != NULL; path++)
+	while (!environ[n])
 	{
-		write(STDOUT_FILENO, (char *) *path, strlen(*path));
-		write(1, &n, 1);
+		temp = environ[n];
+
+		if (_strcmp((char *) name, temp) == 0)
+		{
+			change = strtok(temp, "= ");
+			change = strtok(NULL, "\0");
+			break;
+		}
+
+		temp++;
 	}
-
-
-	return (0);
+	return (change);
 }
