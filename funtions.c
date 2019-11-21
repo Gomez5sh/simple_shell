@@ -26,6 +26,8 @@ int string_rec(char *s)
 
 	len = _strlen(s);
 	cont = 0;
+	if (!s)
+		return (-1);
 	while (s[cont] != '\0')
 	{
 		if(s[cont] != _exit[cont])
