@@ -1,6 +1,6 @@
-#ifndef HEADER_H
-#define HEADER_H
-#define _GNU_SOURCE
+#ifndef _HEADER_H_
+#define _HEADER_H_
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -8,10 +8,12 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <errno.h>
+#include <signal.h>
 #define PROMPT "#Cisfun> "
 #define ERROR_MS "shell: No such file or directory\n"
 
-char *_getenv(const char *name);
-int _strcmp(char *s1, char *s2);
-
+void free_buf(char *s, int len, char*bufo);
+int string_rec(char *s);
+int _strlen(char *s);
+void INThandler(int);
 #endif
