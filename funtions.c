@@ -50,3 +50,14 @@ void free_buf(char *s, int len, char *bufo)
 	free(bufo);
 	exit(EXIT_FAILURE);
 }
+/**
+ * INThandler - promp with CTRL C
+ * @n: none
+ * Return: void
+ */
+void INThandler(int n)
+{
+	(void)n;
+	write(STDOUT_FILENO, "\n", 1);
+	write(STDOUT_FILENO, PROMPT, 9);
+}

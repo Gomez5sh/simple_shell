@@ -14,6 +14,7 @@ int main(void)
 
 	do {
 		write(STDOUT_FILENO, PROMPT, 9);
+		signal(SIGINT, INThandler);
 		x = getline(&bufo, &buffosize, stdin);
 		if (x == EOF)
 			free_buf("EOF detected\n", 13, bufo);
