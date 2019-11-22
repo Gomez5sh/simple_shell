@@ -16,4 +16,7 @@ void free_buf(char *s, int len, char*bufo);
 int string_rec(char *s);
 int _strlen(char *s);
 void INThandler(int);
+char *_getenv(const char *name);
+int _strcmp(char *s1, char *s2);
+
 #endif
