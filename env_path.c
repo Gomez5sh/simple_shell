@@ -1,5 +1,7 @@
 #include "header.h"
 
+int _strcmp(char *s1, char *s2);
+
 /**
  * main - Funtion to se the path.
  * @argc: Number of arguments.
@@ -10,22 +12,19 @@
 
 char *_getenv(const char *name)
 {
-	char * temp;
-	char * change;
-	int n;
+	char *temp;
+	int n = 0;
+	extern char **environ;
 
-	while (!environ[n])
+	while (environ[n] != NULL)
 	{
-		temp = environ[n];
-
-		if (_strcmp((char *) name, temp) == 0)
+		temp = strtok(environ[n], "=");
+		if ((_strcmp(temp,(char *) name)) == 0)
 		{
-			change = strtok(temp, "=");
-			change = strtok(NULL, "\0");
-			break;
+			temp = strtok(NULL, "\0");
+			return (temp);
 		}
-
-		temp++;
+		n++;
 	}
-	return (change);
+	return (NULL);
 }
