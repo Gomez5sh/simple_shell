@@ -58,10 +58,10 @@ This shell supports a variety of builtin commands:
 `setenv` - sets an environment variable
 
 `unsetenv` - unsets an environment variable
-
-```
+`
 ### Authors
 -----
+
 [Cristian Hurtado](https://github.com/cristian0497)
 
 [Emmanuel Gomez](https://github.com/g5sh)
