@@ -24,17 +24,15 @@ int string_rec_exit(char *s)
 	int cont, len;
 	char *_exit = "exit";
 
-	len = _strlen(s);
-	cont = 0;
+	len = 0;
 	if (!s)
 		return (-1);
-	while (s[cont] != '\0')
+	for(cont = 0; s[cont] != '\0'; cont++)
 	{
-		if(s[cont] != _exit[cont])
-			return (0);
-		if(cont == 3 && len == 4)
-			return (1);
-		cont++;
+		if(s[cont] == _exit[cont])
+			len++;
+		if(len > 3)
+			return(1);
 	}
 	return (0);
 }
@@ -46,12 +44,19 @@ int string_rec_exit(char *s)
  * @bufo: Addres of bufo
  * Return: void
  */
-void free_buf(char *s, int len, char *bufo)
+void free_buf(char *s, int len, char *bufo, char *state)
 {
+	int state_ = 0;
 	if (s)
 		write(STDOUT_FILENO, s, len);
+	if (!state)
+	{
+		free(bufo);
+		exit(EXIT_SUCCESS);
+	}
 	free(bufo);
-	exit(EXIT_FAILURE);
+	state_ = _atoi(state);
+	exit(state_);
 }
 /**
  * INThandler - promp with CTRL C - 4
@@ -65,7 +70,7 @@ void INThandler(int n)
 	write(STDOUT_FILENO, PROMPT, 9);
 }
 /**
- * *_strcat - concatenation
+ * *_strcat - concatenation - 5
  * @dest : det of char
  * @src : source
  * Return: dest the var
