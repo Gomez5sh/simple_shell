@@ -1,5 +1,4 @@
 # simple_shell
-# Jian-Stephen Simple Shell
 
 ![logo](/unix.png)
 
