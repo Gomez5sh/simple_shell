@@ -1,5 +1,4 @@
 #include "header.h"
-
 /**
  * _child - funtion to exec in child process
  * @tmp: command without path
@@ -22,7 +21,8 @@ int _child(char *tmp, char *arg[], char *bufo)
 		cadena = strtok(NULL, ":");
 	}
 	write(STDOUT_FILENO, tmp, (_strlen(tmp)));
-	free_buf(ERROR_MS, 12, bufo, "1");
+	free_buf(ERROR_MS, 12, bufo, NULL);
+	_exit(1);
 	return (0);
 }
 /**
@@ -30,18 +30,16 @@ int _child(char *tmp, char *arg[], char *bufo)
  *
  * Return: exit (0) - fail (1)EOF
  */
-
 int main(void)
 {
 	char *arg[] = {"/bin", NULL, NULL, NULL};
 	char *bufo = NULL, *tmp = NULL, *xs = "98";
 	size_t buffosize = 0;
-	int child = 0, x = 0, strrec = 0;
+	int child = 0, x = 0, strrec = 0, state;
 
-	while (1)
-	{
-		write(STDOUT_FILENO, PROMPT, 6);
+	do {
 		signal(SIGINT, INThandler);
+		write(STDOUT_FILENO, PROMPT, 6);
 		x = getline(&bufo, &buffosize, stdin);
 		if (x == EOF)
 			free_buf("\n", 1, bufo, "1");
@@ -61,9 +59,9 @@ int main(void)
 			_child(tmp, arg, bufo);
 		}
 		if (child > 0)
-			wait(NULL);
+			wait(&state);
 		else
 			free(bufo);
-	}
+	} while(state);
 	return (0);
 }
