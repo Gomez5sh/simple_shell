@@ -1,8 +1,5 @@
 #ifndef _HEADER_H_
 #define _HEADER_H_
-#ifndef _GNU_SOURCE_
-#define _GNU_SOURCE_
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,12 +19,13 @@ extern char **environ;
 int _atoi(char *s);
 void free_buf(char *s, int len, char *bufo, char *arg);
 int string_rec_exit(char *s);
-char *string_rec_path(char *tmp);
+char *string_rec_path(char *tmp, char *env);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 void INThandler(int);
 char *findpath(char **env, char *to_find);
 int _strcmp(char *tmp, char *find);
 void change_dir(char *newdir, char *bufo);
+int _child(char *tmp, char *arg[], char *bufo);
 
 #endif
