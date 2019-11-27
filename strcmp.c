@@ -32,7 +32,7 @@ char *findpath(char **env, char *to_find)
 	for (cont = 0; env[cont] != NULL; cont++)
 	{
 		ret_path = strtok(env[cont], "=");
-		if (_strcmp(ret_path, (to_find + 1)) == 1)
+		if (_strcmp(ret_path, to_find) == 1)
 		{
 			ret_path = strtok(NULL, "\n");
 			return (ret_path);
@@ -44,16 +44,16 @@ char *findpath(char **env, char *to_find)
 /**
  * string_rec_path - funtion check if string have or not the path - 3
  * @tmp: string of getline
+ * @env: environmet
  * Return: string with path
  */
-char *string_rec_path(char *tmp)
+char *string_rec_path(char *tmp, char *env)
 {
-	char path[] = "/bin/";
 	char *ret;
 
 	if (tmp[0] == '/')
 		return (tmp);
-	ret = _strcat(path, tmp);
+	ret = _strcat(env, tmp);
 	return (ret);
 }
 /**
@@ -95,7 +95,6 @@ int _atoi(char *s)
  */
 void change_dir(char *newdir, char *bufo)
 {
-	printf("New Dir");
 	chdir(newdir);
 	free_buf(NULL, 0, bufo, "0");
 }

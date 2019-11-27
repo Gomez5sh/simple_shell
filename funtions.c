@@ -70,7 +70,7 @@ void INThandler(int n)
 {
 	(void)n;
 	write(STDOUT_FILENO, "\n", 1);
-	write(STDOUT_FILENO, PROMPT, 9);
+	write(STDOUT_FILENO, PROMPT, 6);
 }
 /**
  * *_strcat - concatenation - 5
@@ -85,11 +85,13 @@ char *_strcat(char *dest, char *src)
 
 	len_dest = _strlen(dest);
 	len_src = _strlen(src);
-	ret = malloc(sizeof(char) * (len_dest + len_src) + 1);
+	ret = malloc(sizeof(char) * (len_dest + len_src) + 2);
 	for (n = 0; dest[n] != '\0'; n++)
 	{
 		ret[n] = dest[n];
 	}
+	ret[n] = '/';
+	n++;
 	for (x = 0 ; src[x] != '\0'; x++, n++)
 	{
 		ret[n] = src[x];
