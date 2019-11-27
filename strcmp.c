@@ -49,10 +49,12 @@ char *findpath(char **env, char *to_find)
 char *string_rec_path(char *tmp)
 {
 	char path[] = "/bin/";
+	char *ret;
 
 	if (tmp[0] == '/')
 		return (tmp);
-	return (_strcat(path, tmp));
+	ret = _strcat(path, tmp);
+	return (ret);
 }
 /**
  * _atoi - converti strings in INT - 4
