@@ -95,7 +95,6 @@ int _atoi(char *s)
  */
 void change_dir(char *newdir, char *bufo)
 {
-	printf("New Dir");
 	chdir(newdir);
 	free_buf(NULL, 0, bufo, "0");
 }
