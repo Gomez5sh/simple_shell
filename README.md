@@ -42,7 +42,7 @@ JS$ cat textfile
 ```
 Non-interactive mode:
 ```
-$ echo "ls -l" | ./hsh
+$ echo "ls -l" | ./simple_shell
 ```
 
 ### Builtin Commands
