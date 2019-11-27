@@ -1,5 +1,8 @@
 #ifndef _HEADER_H_
 #define _HEADER_H_
+#ifndef _GNU_SOURCE_
+#define _GNU_SOURCE_
+
 
 #include <stdio.h>
 #include <stdlib.h>
