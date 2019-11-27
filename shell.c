@@ -1,9 +1,11 @@
 #include "header.h"
+
 /**
  * main - funtion main of thw shell
  *
  * Return: exit (0) - fail (1)EOF
  */
+
 int main(void)
 {
 	char *arg[] = {"/bin/sh", NULL, NULL, NULL};
