@@ -1,4 +1,5 @@
 #include "header.h"
+
 /**
  * _child - funtion to exec in child process
  * @tmp: command without path
@@ -29,6 +30,7 @@ int _child(char *tmp, char *arg[], char *bufo)
  *
  * Return: exit (0) - fail (1)EOF
  */
+
 int main(void)
 {
 	char *arg[] = {"/bin", NULL, NULL, NULL};
