@@ -43,7 +43,7 @@ int main(int ag, char *av[])
 	(void)ag;
 	do {
 		signal(SIGINT, INThandler);
-		x = getline(&bufo, &buffosize, STDIN_FILENO);
+		x = getline(&bufo, &buffosize, stdin);
 		if (x == EOF)
 			free_buf("\n", 1, bufo, "1");
 		tmp = strtok(bufo, "\n ");
