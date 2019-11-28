@@ -5,6 +5,7 @@
  * @arg: arguments of command
  * @bufo: pointer to buff malloc
  * @av: name of executable
+ * @env_: variables of entorn
  * Return: 0
  */
 int _child(char *tmp, char *arg[], char *bufo, char *av, char *env_[])
@@ -19,7 +20,7 @@ int _child(char *tmp, char *arg[], char *bufo, char *av, char *env_[])
 	{
 		cadena = string_rec_path(tmp, cadena);
 		execve(cadena, arg, env_);
-		cadena = strtok(NULL, ":");
+		cadena = strtok(NULL, ":\0");
 	}
 	write(STDOUT_FILENO, av, (_strlen(av)));
 	write(STDOUT_FILENO, ": 1: ", 5);
@@ -31,6 +32,7 @@ int _child(char *tmp, char *arg[], char *bufo, char *av, char *env_[])
  * main - funtion main of thw shell
  * @ag: void
  * @av: name of executable
+ * @env_: environment of system
  * Return: exit (0) - fail (1)EOF
  */
 int main(int ag, char *av[], char *env_[])
