@@ -56,9 +56,9 @@ void free_buf(char *s, int len, char *bufo, char *state)
 	{
 		free(bufo);
 		exit(EXIT_SUCCESS);
-	}
+		}
+	state_ = _atoi((char *)state);
 	free(bufo);
-	state_ = _atoi(state);
 	exit(state_);
 }
 /**
@@ -70,7 +70,7 @@ void INThandler(int n)
 {
 	(void)n;
 	write(STDOUT_FILENO, "\n", 1);
-	write(STDOUT_FILENO, PROMPT, 6);
+	write(STDOUT_FILENO, PROMPT, 8);
 }
 /**
  * *_strcat - concatenation - 5

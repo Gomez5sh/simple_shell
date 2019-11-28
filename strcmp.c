@@ -58,31 +58,14 @@ char *string_rec_path(char *tmp, char *env)
 }
 /**
  * _atoi - converti strings in INT - 4
- * @s: string to convert
+ * @str: string to convert
  * Return: int number
  */
-int _atoi(char *s)
+int _atoi(char *str)
 {
-	int number, sign = 0, lenght = 0;
-	unsigned int n = 0;
+	int number = 0, i;
 
-	while (s[lenght] != '\0')
-	{
-		if (s[lenght] == '-')
-		{
-			sign++;
-		}
-		if (s[lenght] >= '0' && s[lenght] <= '9')
-		{
-			n = 10 * n + (s[lenght] - '0');
-			if (s[lenght + 1] < '0' || s[lenght + 1] > '9')
-				break;
-		}
-		lenght++;
-	}
-	if (sign % 2 != 0)
-		number = n * -1;
-	else
-		number = n;
+	for (i = 0; str[i] != '\0'; ++i)
+		number = number * 10 + str[i] - '0';
 	return (number);
 }

@@ -13,7 +13,7 @@ int _child(char *tmp, char *arg[], char *bufo, char *av, char *env_[])
 	char *_findpath, *cadena;
 
 	if (!tmp)
-		free_buf("Enter a command\n", 16, bufo, "1");
+		free_buf(NULL, 0, bufo, "1");
 	_findpath = findpath(environ, "PATH");
 	cadena = strtok(_findpath, ":");
 	while (cadena)
@@ -38,7 +38,7 @@ int _child(char *tmp, char *arg[], char *bufo, char *av, char *env_[])
 int main(int ag, char *av[], char *env_[])
 {
 	char *arg[] = {"/bin/sh", NULL, NULL, NULL};
-	char *bufo = NULL, *tmp = NULL, *xs = "98";
+	char *bufo = NULL, *tmp = NULL;
 	size_t buffosize;
 	int child = 0, x, strrec = 0;
 
@@ -61,8 +61,8 @@ int main(int ag, char *av[], char *env_[])
 		if (strrec == 1)
 		{
 			if (arg[1] == NULL)
-				xs = NULL;
-			free_buf(NULL, 0, bufo, xs);
+				arg[1] = NULL;
+			free_buf(NULL, 0, bufo, arg[1]);
 		}
 		child = fork();
 		if (child == 0)
