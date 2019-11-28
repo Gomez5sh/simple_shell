@@ -56,12 +56,11 @@ int main(int ag, char *av[])
 		arg[1] = strtok(NULL, "\n ");
 		arg[2] = strtok(NULL, "\n ");
 		strrec = string_rec_exit(bufo);
-		if (strrec == -1)
+		if (strrec == 1)
 		{
 			if (arg[1] == NULL)
 				xs = NULL;
 			free_buf(NULL, 0, bufo, xs);
-			exit(-1);
 		}
 		child = fork();
 		if (child == 0)
