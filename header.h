@@ -12,7 +12,7 @@
 #include <signal.h>
 
 #define PROMPT "MyShell "
-#define ERROR_MS ": not found\0"
+#define ERROR_MS ": not found\n"
 #define ERROR_PATH "Fail to find PATH\n"
 
 extern char **environ;

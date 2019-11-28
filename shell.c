@@ -33,7 +33,7 @@ int _child(char *tmp, char *arg[], char *bufo, char *av, char *env_[])
  * @av: name of executable
  * Return: exit (0) - fail (1)EOF
  */
-int main(int ag, char *av[], char*env_[])
+int main(int ag, char *av[], char *env_[])
 {
 	char *arg[] = {"/bin/sh", NULL, NULL, NULL};
 	char *bufo = NULL, *tmp = NULL, *xs = "98";
@@ -43,9 +43,8 @@ int main(int ag, char *av[], char*env_[])
 	(void)ag;
 	do {
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, PROMPT, 6);
+			write(STDOUT_FILENO, PROMPT, 8);
 		signal(SIGINT, INThandler);
-		write(STDOUT_FILENO, PROMPT, 8);
 		x = getline(&bufo, &buffosize, stdin);
 		if (x == EOF)
 		{
