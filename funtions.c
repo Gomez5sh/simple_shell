@@ -55,11 +55,11 @@ void free_buf(char *s, int len, char *bufo, char *state)
 	if (!state)
 	{
 		free(bufo);
-		_exit(EXIT_SUCCESS);
+		exit(EXIT_SUCCESS);
 	}
 	free(bufo);
 	state_ = _atoi(state);
-	_exit(state_);
+	exit(state_);
 }
 /**
  * INThandler - promp with CTRL C - 4
