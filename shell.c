@@ -7,7 +7,7 @@
  * @av: name of executable
  * Return: 0
  */
-int _child(char *tmp, char *arg[], char *bufo, char *av)
+int _child(char *tmp, char *arg[], char *bufo, char *av, char *env_[])
 {
 	char *_findpath, *cadena;
 
@@ -18,7 +18,7 @@ int _child(char *tmp, char *arg[], char *bufo, char *av)
 	while (cadena)
 	{
 		cadena = string_rec_path(tmp, cadena);
-		execve(cadena, arg, NULL);
+		execve(cadena, arg, env_);
 		cadena = strtok(NULL, ":");
 	}
 	write(STDOUT_FILENO, av, (_strlen(av)));
@@ -33,7 +33,7 @@ int _child(char *tmp, char *arg[], char *bufo, char *av)
  * @av: name of executable
  * Return: exit (0) - fail (1)EOF
  */
-int main(int ag, char *av[])
+int main(int ag, char *av[], char *env_[])
 {
 	char *arg[] = {"/bin/sh", NULL, NULL, NULL};
 	char *bufo = NULL, *tmp = NULL, *xs = "98";
@@ -43,7 +43,7 @@ int main(int ag, char *av[])
 	(void)ag;
 	do {
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, PROMPT, 6);
+			write(STDOUT_FILENO, PROMPT, 8);
 		signal(SIGINT, INThandler);
 		x = getline(&bufo, &buffosize, stdin);
 		if (x == EOF)
@@ -65,7 +65,7 @@ int main(int ag, char *av[])
 		child = fork();
 		if (child == 0)
 		{
-			_child(tmp, arg, bufo, av[0]);
+			_child(tmp, arg, bufo, av[0], env_);
 		}
 		else
 			wait(NULL);

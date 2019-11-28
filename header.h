@@ -11,8 +11,8 @@
 #include <errno.h>
 #include <signal.h>
 
-#define PROMPT "SHELL "
-#define ERROR_MS ": not found\0"
+#define PROMPT "MyShell "
+#define ERROR_MS ": not found\n"
 #define ERROR_PATH "Fail to find PATH\n"
 
 extern char **environ;
@@ -26,6 +26,6 @@ char *_strcat(char *dest, char *src);
 void INThandler(int);
 char *findpath(char **env, char *to_find);
 int _strcmp(char *tmp, char *find);
-int _child(char *tmp, char *arg[], char *bufo, char *av);
+int _child(char *tmp, char *arg[], char *bufo, char *av, char *env_[]);
 
 #endif
