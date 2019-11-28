@@ -42,11 +42,17 @@ int main(int ag, char *av[], char*env_[])
 
 	(void)ag;
 	do {
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, PROMPT, 6);
 		signal(SIGINT, INThandler);
 		write(STDOUT_FILENO, PROMPT, 8);
 		x = getline(&bufo, &buffosize, stdin);
 		if (x == EOF)
+		{
+			if (isatty(STDIN_FILENO))
 			free_buf("\n", 1, bufo, "1");
+			exit(0);
+		}
 		tmp = strtok(bufo, "\n ");
 		arg[1] = strtok(NULL, "\n ");
 		arg[2] = strtok(NULL, "\n ");
