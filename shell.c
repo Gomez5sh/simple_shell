@@ -42,6 +42,7 @@ int main(int ag, char *av[])
 
 	(void)ag;
 	do {
+		if (isatty(STDIN_FILENO))
 		signal(SIGINT, INThandler);
 		x = getline(&bufo, &buffosize, stdin);
 		if (x == EOF)
