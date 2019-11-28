@@ -1,6 +1,6 @@
 # simple_shell
 
-![logo](/unix.png)
+![logo](/unix.jpg)
 
 ### Project details
 -----
