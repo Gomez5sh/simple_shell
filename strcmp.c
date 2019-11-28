@@ -86,15 +86,3 @@ int _atoi(char *s)
 		number = n;
 	return (number);
 }
-
-/**
- * change_dir - change the path pwd
- * @newdir: new directory to change
- * @bufo: free child proces to reset shell with other env path
- * Retur: void
- */
-void change_dir(char *newdir, char *bufo)
-{
-	chdir(newdir);
-	free_buf(NULL, 0, bufo, "0");
-}
